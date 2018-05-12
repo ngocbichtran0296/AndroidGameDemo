@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/black"
+    tools:context="com.ngocbich.androidgamedemo.Activity.PauseActivity">
+
+    <ImageView
+        android:id="@+id/MainMenuImage"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:src="@drawable/bggame"
+        android:scaleType="fitXY"/>
+
+    <LinearLayout
+        android:layout_alignBottom="@+id/MainMenuImage"
+        android:layout_marginBottom="75dp"
+        android:layout_marginStart="35dp"
+        android:layout_marginLeft="35dp"
+        android:orientation="vertical"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <Button
+            android:layout_width="175dp"
+            android:layout_height="65dp"
+            android:onClick="resumeGame"
+            android:text="Resume"
+            android:layout_marginBottom="5dp"/>
+
+        <Button
+            android:layout_width="175dp"
+            android:layout_height="65dp"
+            android:onClick="showPlayScreen"
+            android:text="New game"
+            android:layout_marginBottom="5dp"/>
+
+        <Button
+            android:layout_width="175dp"
+            android:layout_height="65dp"
+            android:text="Settings"
+            android:layout_marginBottom="5dp"/>
+
+
+        <Button
+            android:layout_width="175dp"
+            android:layout_height="65dp"
+            android:onClick="showHelpScreen"
+            android:text="How to play"
+            />
+    </LinearLayout>
+</RelativeLayout>
