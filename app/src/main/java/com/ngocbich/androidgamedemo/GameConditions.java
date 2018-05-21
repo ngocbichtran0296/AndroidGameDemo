@@ -12,8 +12,8 @@ import com.ngocbich.androidgamedemo.Activity.CompletedLevelActivity;
 
 public class GameConditions {
     private static GameConditions instance;
-    private int currentScore = 0;           //Current game score
-    private int numOfDots;           //Total number of fruits remaining
+    public static int currentScore = 0;           //Current game score
+    private int numOfDots;           //Total number of dots remaining
 
     private GameConditions() {}
 
@@ -48,14 +48,14 @@ public class GameConditions {
         return instance;
     }
 
-    //counts the number of fruits at the start of the game
-    public static void countFruist(short[][] currentMap) {
+    //counts the number of dot at the start of the game
+    public static void countDots(short[][] currentMap) {
         GameConditions gc = GameConditions.getInstance();
         gc.setNumOfDots(0);
         for (int i = 0; i < 18; i++) {
             for (int j = 0; j < 17; j++) {
                 if ((currentMap[i][j] & 16) != 0) {
-                    //increases the total number of fruits
+                    //increases the total number of dot
                     gc.setNumOfDots(gc.getNumOfDots() + 1);;
 
                     Log.i("info", "Pellets = " + Integer.toString(gc.getNumOfDots()));

@@ -37,23 +37,23 @@ public class Player {
 
 
     //Method that draws player based on his viewDirection
-    public void drawPlayer(BitmapImages bitmap, Canvas canvas, Movement movement, Paint paint, Context context, int currentPacmanFrame) {
+    public void drawPlayer(BitmapImages bitmap, Canvas canvas, Movement movement, Paint paint, Context context, int currentPlayerFrame) {
         //move player
         movement.movePlayer();
 
         //draw player
         switch (this.getCurDir()) {
             case (0):
-                canvas.drawBitmap(bitmap.getPlayerUp()[currentPacmanFrame], this.getXPos(), this.getYPos(), paint);
+                canvas.drawBitmap(bitmap.getPlayerUp()[currentPlayerFrame], this.getXPos(), this.getYPos(), paint);
                 break;
             case (1):
-                canvas.drawBitmap(bitmap.getPlayerRight()[currentPacmanFrame], this.getXPos(), this.getYPos(), paint);
+                canvas.drawBitmap(bitmap.getPlayerRight()[currentPlayerFrame], this.getXPos(), this.getYPos(), paint);
                 break;
             case (3):
-                canvas.drawBitmap(bitmap.getPlayerLeft()[currentPacmanFrame], this.getXPos(), this.getYPos(), paint);
+                canvas.drawBitmap(bitmap.getPlayerLeft()[currentPlayerFrame], this.getXPos(), this.getYPos(), paint);
                 break;
             default:
-                canvas.drawBitmap(bitmap.getPlayerDown()[currentPacmanFrame], this.getXPos(), this.getYPos(), paint);
+                canvas.drawBitmap(bitmap.getPlayerDown()[currentPlayerFrame], this.getXPos(), this.getYPos(), paint);
                 break;
         }
 

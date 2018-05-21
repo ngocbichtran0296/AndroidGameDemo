@@ -7,8 +7,19 @@
     android:paddingLeft="0dp"
     android:paddingRight="0dp"
     android:paddingTop="0dp"
-    android:background="@drawable/bg"
+    android:background="#000"
     tools:context="com.ngocbich.androidgamedemo.MainActivity">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/linearLayout3"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="71dp"
+        android:text="Android Game Demo"
+        android:textColor="@android:color/holo_orange_light"
+        android:textSize="35sp"
+        android:textStyle="bold" />
 
     <LinearLayout
         android:layout_alignParentBottom="true"
@@ -16,7 +27,8 @@
         android:layout_centerHorizontal="true"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:id="@+id/linearLayout3">
         <Button
             android:onClick="showPlayScreen"
             android:id="@+id/btPlay"

@@ -6,7 +6,9 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.TextView;
 
+import com.ngocbich.androidgamedemo.GameConditions;
 import com.ngocbich.androidgamedemo.MainActivity;
 import com.ngocbich.androidgamedemo.R;
 
@@ -16,31 +18,19 @@ public class FailedLevelActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_failed_level);
-        MainActivity.getPlayer().start();
+       // MainActivity.getPlayer().start();
 
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setMessage(R.string.gameOver).setNeutralButton(R.string.ok, new AlertDialog.OnClickListener(){
-            public void onClick(DialogInterface dialog, int which){
-                Intent failedIntent = new Intent(PlayActivity.getInstance(), MainActivity.class);
-                PlayActivity.getInstance().startActivity(failedIntent);
-
-            }
-        });
-        AlertDialog dialog = builder.create();
-        dialog.show();
+        TextView score=findViewById(R.id.score);
+        score.setText("Your score: "+GameConditions.currentScore);
 
     }
 
     public void showPlayScreen(View view) {
-        Intent playIntent = new Intent(this, PlayActivity.class);
+        Intent playIntent = new Intent(this, MainActivity.class);
         startActivity(playIntent);
         PlayActivity.getInstance().finish();
         MainActivity.getPlayer().stop(); //*
         this.finish();
     }
 
-    public void showHelpScreen(View view) {
-        Intent helpIntent = new Intent(this, HelpActivity.class);
-        startActivity(helpIntent);
-    }
 }

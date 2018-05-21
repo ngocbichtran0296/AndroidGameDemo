@@ -12,6 +12,7 @@
         android:scaleType="fitXY" />
 
     <LinearLayout
+        android:layout_centerHorizontal="true"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
@@ -64,8 +65,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_above="@+id/linearLayout"
-        android:layout_alignStart="@+id/linearLayout"
-        android:layout_marginBottom="25dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="18dp"
         android:text="Press Next level to keep playing"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:textColor="@android:color/holo_orange_light"

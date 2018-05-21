@@ -6,21 +6,27 @@
     android:background="@android:color/black"
     tools:context="com.ngocbich.androidgamedemo.Activity.PauseActivity">
 
-    <ImageView
-        android:id="@+id/MainMenuImage"
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:src="@drawable/bggame"
-        android:scaleType="fitXY"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/linearLayout2"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="17dp"
+        android:text="Pause!"
+        android:textColor="@android:color/holo_orange_light"
+        android:textSize="30sp"
+        android:textStyle="bold" />
 
     <LinearLayout
-        android:layout_alignBottom="@+id/MainMenuImage"
+       android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
         android:layout_marginBottom="75dp"
         android:layout_marginStart="35dp"
         android:layout_marginLeft="35dp"
         android:orientation="vertical"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:id="@+id/linearLayout2">
 
         <Button
             android:layout_width="175dp"

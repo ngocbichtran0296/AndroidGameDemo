@@ -3,40 +3,50 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#000"
     tools:context="com.ngocbich.androidgamedemo.Activity.FailedLevelActivity">
 
-    <ImageView
-        android:id="@+id/imageView2"
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:src="@drawable/bggame"
-        android:scaleType="fitXY" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Game over!"
+        android:id="@+id/textView3"
+        android:layout_marginTop="39dp"
+        android:textColor="@android:color/holo_orange_light"
+        android:textSize="@dimen/abc_action_bar_stacked_max_height"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:textStyle="bold|italic"
+        android:typeface="normal"
+        android:background="#000000" />
 
     <LinearLayout
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:layout_alignBottom="@+id/imageView2"
-        android:layout_marginBottom="100dp"
-        android:layout_marginLeft="35dp" >
+        android:layout_marginBottom="100dp">
+
+        <TextView
+            android:textStyle="bold"
+            android:id="@+id/score"
+            android:textColor="@android:color/holo_orange_light"
+            android:textSize="25sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Your score:"/>
+
 
         <Button
+            android:layout_marginTop="30dp"
             android:layout_width="175dp"
             android:layout_height="65dp"
             android:onClick="showPlayScreen"
-            android:text="New gme"
+            android:text="OK"
             android:layout_marginBottom="5dp" />
 
-        <Button
-            android:layout_width="175dp"
-            android:layout_height="65dp"
-            android:onClick="showHelpScreen"
-            android:text="How to play" />
 
-        <Button
-            android:layout_width="175dp"
-            android:layout_height="65dp"
-            android:text="Settings"
-            android:layout_marginBottom="5dp" />
     </LinearLayout>
 </RelativeLayout>

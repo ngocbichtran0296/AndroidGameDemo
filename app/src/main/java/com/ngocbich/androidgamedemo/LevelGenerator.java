@@ -6,50 +6,33 @@ package com.ngocbich.androidgamedemo;
 
 public class LevelGenerator {
     //empty constructor since we use the static methods to generate map
-    public LevelGenerator(){
+    public LevelGenerator() {
     }
 
     //Static method to return a map with 0 for testing and 1 onward for the actual levels
-    public static short[][] getMap(int level){
-        switch (level){
-            case(0):
+    public static short[][] getMap(int level) {
+        switch (level) {
+            case (0):
                 return getTestMap();
-            case(1):
+            case (1):
                 return getLevel1();
-            case(2):
+            case (2):
                 return getLevel2();
-            case(3):
+            case (3):
                 return getLevel3();
             default:
                 return getLevel1();
         }
     }
 
-    private static short[][] getTestMap(){
-        return  new short[][]{
-                {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-                {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-                {3, 10, 10, 2, 10, 10, 10, 6, 0,3, 10,10,10,2,10,10, 6},
-                {5, 0, 0, 5, 0, 0, 0, 5, 0, 5, 0, 0, 0, 5, 0, 0, 5},
-                {1,10,10, 0,10,2,10, 8,10, 8,10,2,10, 0,10,10, 4},
-                {9,10,10, 4, 0, 9,10, 6, 0,3,10, 12, 0, 1,10,10, 12},
-                {0, 0, 0, 5, 0, 0, 0, 5, 0, 5, 0, 0, 0, 5, 0, 0, 0},
-                {0, 0, 0, 5, 0,3,10, 8,10, 8,10, 6, 0, 5, 0, 0, 0},
-                {10,10,10, 0,10, 4, 0, 0, 0, 0, 0, 1,10, 0,10,10,10},
-                {0, 0, 0, 5, 0, 1,10,10,10,10,10, 4, 0, 5, 0, 0, 0},
-                {0, 0, 0, 5, 0, 5, 0, 0, 0, 0, 0, 5, 0, 5, 0, 0, 0},
-                {3,10,10, 0,10, 8,10, 6, 0,3,10, 8,10, 0,10,10, 6},
-                {5, 0, 0, 5, 0, 0, 0, 5, 0, 5, 0, 0, 0, 5, 0, 0, 5},
-                {9, 6, 0, 5, 0, 0, 0, 1, 2, 20, 0, 0, 0, 5, 0,3, 12}, // "2" in this line is for
-                {0, 5, 0, 1,10,10,2, 8, 8, 8,2,10,10, 4, 0, 5, 0}, // pacman's spawn
-                {3, 8,10, 12, 0, 0, 9,2,10,2, 12, 0, 0, 9, 10, 8, 6},
-                {5, 0, 0, 0, 0, 0, 0, 5, 0, 5, 0, 0, 0, 0, 0, 0, 5},
-                {9,10,10,10,10,10,10, 8,10, 8,10,10,10,10,10,10, 12},
+    private static short[][] getTestMap() {
+        return new short[][]{
+
         };
     }
 
-    private static short[][] getLevel1(){
-        return  new short[][]{
+    private static short[][] getLevel1() {
+        return new short[][]{
                 {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
                 {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
                 {19, 26, 26, 18, 26, 26, 26, 22, 0, 19, 26, 26, 26, 18, 26, 26, 22},
@@ -71,11 +54,11 @@ public class LevelGenerator {
         };
     }
 
-    private static short[][] getLevel2(){
+    private static short[][] getLevel2() {
         return null;
     }
 
-    private static short[][] getLevel3(){
+    private static short[][] getLevel3() {
         return null;
     }
 }

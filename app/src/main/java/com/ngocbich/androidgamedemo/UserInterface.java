@@ -43,7 +43,7 @@ public class UserInterface {
     // add mute/unmute button
     public static void drawMap(Canvas canvas, short[][] currentMap, Paint paint, int blockSize){
         paint.setColor(Color.BLUE);
-        paint.setStrokeWidth(2.5f);
+        paint.setStrokeWidth(3.0f);
 
         int x, y;
 

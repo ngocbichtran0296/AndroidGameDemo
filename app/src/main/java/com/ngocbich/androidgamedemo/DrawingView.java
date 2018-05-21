@@ -16,6 +16,8 @@ import com.ngocbich.androidgamedemo.Activity.PauseActivity;
 import com.ngocbich.androidgamedemo.GameObject.Enemy;
 import com.ngocbich.androidgamedemo.GameObject.Player;
 
+import static java.lang.Thread.sleep;
+
 /**
  * Created by Ngoc Bich on 5/7/2018.
  */
@@ -25,23 +27,25 @@ public class DrawingView extends SurfaceView implements Runnable, SurfaceHolder.
     private SurfaceHolder holder;
     private boolean canDraw = true;
 
+    private int FPS=30;
+
     private Paint paint;
 
     private int totalFrame = 4;             // Total amount of frames fo each direction
-    private int currentPacmanFrame = 0;     // Current Pacman frame to draw
+    private int currentPlayerFrame = 0;     // Current Player frame to draw
 
     private long frameTicker;               // Current time since last frame has been drawn
 
-    private float x1, x2, y1, y2;           // Initial/Final positions of swipe
+    private float x1, x2, y1, y2;           // positions of swipe
 
     private int screenWidth;                // Width of the phone screen
     private int blockSize;                  // Size of a block on the map
-    public static int LONG_PRESS_TIME=750;  // Time in milliseconds
+
     final Handler handler = new Handler();
 
     private short currentMap[][];           //the current map being played
 
-    //refactor of DrawingView methods into separate objects/classes
+
     private Movement movement;
 
     private BitmapImages bitmap;
@@ -80,10 +84,6 @@ public class DrawingView extends SurfaceView implements Runnable, SurfaceHolder.
 
 
         //each enemy spawns at a different position
-      //  enemy0.setXPos(8 * blockSize);
-        //enemy0.setYPos(8 * blockSize);
-        //enemy0.setDir(2);
-
         enemy1.setXPos(4 * blockSize);
         enemy1.setYPos(8 * blockSize);
         enemy1.setDir(1);
@@ -111,28 +111,40 @@ public class DrawingView extends SurfaceView implements Runnable, SurfaceHolder.
         Log.i("info", "Surface Destroyed");
     }
 
+    private double averageFPS;
     @Override
     public void run() {
         Log.i("info", "Run");
-        GameConditions.countFruist(currentMap);
+        GameConditions.countDots(currentMap);
+
+        long startTime;
+        long timeMillis = 1000 / FPS;
+        long waitTime;
+        int frameCount = 0;
+        long totalTime = 0;
+        long targetTime = 1000 / FPS;
 
         while (canDraw){
+            startTime = System.nanoTime();
+
             if (!holder.getSurface().isValid()) {
                 continue;
             }
 
             Canvas canvas = holder.lockCanvas();
-            // Set background color to Transparent
+            // Set background
             if(canvas!=null){
                 canvas.drawColor(Color.BLACK);
                 UserInterface.drawMap(canvas, currentMap, paint, blockSize);
 
                 updateFrame(System.currentTimeMillis());
 
+
+                player.drawPlayer(bitmap, canvas, movement, paint, getContext(), currentPlayerFrame);
+
                 enemy0.drawEnemy(bitmap, canvas, movement, paint, getContext(), 0);
                 enemy1.drawEnemy(bitmap, canvas, movement, paint, getContext(), 1);
 
-                player.drawPlayer(bitmap, canvas, movement, paint, getContext(), currentPacmanFrame);
 
                 updateConditions(movement);
 
@@ -142,10 +154,49 @@ public class DrawingView extends SurfaceView implements Runnable, SurfaceHolder.
                 UserInterface.drawPauseButton(bitmap, canvas, paint, blockSize);
                 UserInterface.drawMuteButton(bitmap, canvas, paint, blockSize);
                 UserInterface.drawScores(canvas, paint, blockSize);
+
+
                 holder.unlockCanvasAndPost(canvas);
             }//end if()
+
+            timeMillis = (System.nanoTime() - startTime) / 1000000;
+            waitTime = targetTime - timeMillis;
+            try {
+                if (waitTime > 0) {
+                    sleep(waitTime);
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            totalTime += System.nanoTime() - startTime;
+            frameCount++;
+            if (frameCount == FPS) {
+                averageFPS = 1000 / ((totalTime / frameCount) / 1000000);
+                frameCount = 0;
+                totalTime = 0;
+                System.out.println(averageFPS);
+            }
         }
     }
+
+    // Check to see if we should update the current frame
+    // based on time passed so the animation won't be too
+    // quick and look bad
+    private void updateFrame(long gameTime) {
+
+        // If enough time has passed go to next frame
+        if (gameTime > frameTicker + (totalFrame * 30)) {
+            frameTicker = gameTime;
+
+            // Increment the frame
+            currentPlayerFrame++;
+            // Loop back the frame when you have gone through all the frames
+            if (currentPlayerFrame >= totalFrame) {
+                currentPlayerFrame = 0;
+            }
+        }
+    }
+
 
     Runnable pauseThread = new Runnable() {
         public void run() {
@@ -209,12 +260,11 @@ public class DrawingView extends SurfaceView implements Runnable, SurfaceHolder.
         float yDiff = (y2 - y1);
 
         // Directions
-        // 0 means going up
-        // 1 means going right
-        // 2 means going down
-        // 3 means going left
-        // 4 means stop moving, look at move function
-
+        // 0 - up
+        // 1 - right
+        // 2 - down
+        // 3 - left
+        // 4 - stop
 
         // Checks which axis has the greater distance
         // in order to see which direction the swipe is
@@ -235,23 +285,6 @@ public class DrawingView extends SurfaceView implements Runnable, SurfaceHolder.
 
     }
 
-    // Check to see if we should update the current frame
-    // based on time passed so the animation won't be too
-    // quick and look bad
-    private void updateFrame(long gameTime) {
-
-        // If enough time has passed go to next frame
-        if (gameTime > frameTicker + (totalFrame * 30)) {
-            frameTicker = gameTime;
-
-            // Increment the frame
-            currentPacmanFrame++;
-            // Loop back the frame when you have gone through all the frames
-            if (currentPacmanFrame >= totalFrame) {
-                currentPacmanFrame = 0;
-            }
-        }
-    }
 
 
     private void updateConditions(Movement movement) {

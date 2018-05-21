@@ -135,7 +135,7 @@ public class Movement {
                 swipeDir = 4;
             }
         }
-        // When pacman goes through tunnel on
+        // When player goes through tunnel on
         // the left reappear at right tunnel
         if (xPosPlayer < 0) {
             xPosPlayer = blockSize * 17;
@@ -148,13 +148,13 @@ public class Movement {
     public void updatePlayer(){
         // Depending on the direction move the position of player
         if (swipeDir == 0) {        // 0: up
-            player.setYPos(player.getYPos() + -blockSize/15);
+            player.setYPos(player.getYPos() + -blockSize/10);
         } else if (swipeDir == 1) {         // 1: right
-            player.setXPos(player.getXPos() + blockSize/15);
+            player.setXPos(player.getXPos() + blockSize/10);
         } else if (swipeDir == 2) {         // 2: down
-            player.setYPos(player.getYPos() + blockSize/15);
+            player.setYPos(player.getYPos() + blockSize/10);
         } else if (swipeDir == 3) {         // 3: left
-            player.setXPos(player.getXPos() + -blockSize/15);
+            player.setXPos(player.getXPos() + -blockSize/10);
         }
     }
 
